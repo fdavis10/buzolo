@@ -1,0 +1,9 @@
+.App {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Smooth scroll animations */
+section {
+  scroll-margin-top: 80px;
+}

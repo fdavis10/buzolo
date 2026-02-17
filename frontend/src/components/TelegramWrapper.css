@@ -1,0 +1,40 @@
+.telegram-wrapper.telegram-app {
+  /* Адаптация для Telegram MiniApp */
+  min-height: 100vh;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.telegram-wrapper.telegram-app .App {
+  /* Убираем лишние отступы в Telegram */
+  padding-top: 0;
+}
+
+/* Адаптация темы Telegram */
+.telegram-wrapper.theme-dark {
+  background-color: var(--tg-theme-bg-color, #000000);
+  color: var(--tg-theme-text-color, #ffffff);
+}
+
+.telegram-wrapper.theme-light {
+  background-color: var(--tg-theme-bg-color, #ffffff);
+  color: var(--tg-theme-text-color, #000000);
+}
+
+/* Используем цвета Telegram, если доступны */
+.telegram-wrapper.telegram-app {
+  --primary-color: var(--tg-theme-button-color, #3390ec);
+  --text-color: var(--tg-theme-text-color, #000000);
+  --bg-color: var(--tg-theme-bg-color, #ffffff);
+  --hint-color: var(--tg-theme-hint-color, #999999);
+  --link-color: var(--tg-theme-link-color, #3390ec);
+  --button-text-color: var(--tg-theme-button-text-color, #ffffff);
+}
+
+/* Адаптация для мобильных устройств в Telegram */
+@media (max-width: 768px) {
+  .telegram-wrapper.telegram-app {
+    /* Telegram уже обеспечивает правильные отступы */
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

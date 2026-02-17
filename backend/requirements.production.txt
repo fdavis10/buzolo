@@ -1,0 +1,23 @@
+# Production requirements
+# Базовые зависимости
+Django==4.2.7
+djangorestframework==3.14.0
+django-cors-headers==4.3.1
+python-dotenv==1.0.0
+
+# Telegram bot
+aiogram==3.13.1
+aiohttp==3.10.11
+
+# Production server
+gunicorn==21.2.0
+whitenoise==6.6.0
+
+# Database (выберите один)
+# PostgreSQL
+psycopg2-binary==2.9.9
+# Или MySQL
+# mysqlclient==2.2.0
+
+# Monitoring and logging (опционально)
+# sentry-sdk==1.40.0

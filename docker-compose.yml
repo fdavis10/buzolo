@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: buzolo-backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env.production
+    environment:
+      - DJANGO_SETTINGS_MODULE=buzolo_backend.settings.production
+    volumes:
+      - ./backend:/app
+      - backend_static:/app/staticfiles
+      - backend_db:/app/db
+    ports:
+      - "8000:8000"
+    networks:
+      - buzolo-network
+    healthcheck:
+      test: ["CMD", "python", "manage.py", "check", "--database", "default"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: buzolo-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - buzolo-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  backend_static:
+  backend_db:
+
+networks:
+  buzolo-network:
+    driver: bridge
